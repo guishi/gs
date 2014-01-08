@@ -1,68 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
+<!doctype html>
+<html ng-app="app">
+  <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.js"></script>
+    <script language="javascript" type="text/javascript">
+      angular.module('app', []);
+      
+      //Whatever you put on the controller scope,
+      //will be availalble in the HTML element bound to the controller.
+      function MyController($scope){
+        $scope.newMessage = "";
+        $scope.names = "";
+        $scope.messages = ["GS : Apple"]; 
+        
+        $scope.add = function(){
+          $scope.messages.push($scope.names + " : " + $scope.newMessage);
+        };
+      }
     </script>
-    <title>Gs by guishi</title>
-  </head>
+  </header>
+  
+  <body ng-controller="MyController"  style="background-color:#FAEBD7;">
+    <h2>Fruity Fruit</h2>
 
-  <body>
-    <a id="forkme_banner" href="https://github.com/guishi/gs">View on GitHub</a>
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Gs</h1>
-            <h2></h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
-
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/guishi/gs/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/guishi/gs/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
-
-
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <p>Hello! </p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/guishi">guishi</a> can be found on <a href="https://github.com/guishi/gs">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
+    <br>
+    <img src="http://us.123rf.com/400wm/400/400/cookelma/cookelma0709/cookelma070900176/1592193-ripe-fresh-fruit-wholesome-food.jpg" width="200px">
+    <br>
+    Name:
+    <input type="text" ng-model="names"><br>
+    What is your favourite fruit?:   
+    <input type="text" ng-model="newMessage">
+    <input type="submit" ng-click="add()" value="Fruit">
+    <br>
+    Favourite fruits <br>
+    <ul>
+      <li ng-repeat="message in messages">
+        {{message}}
+      </li>
+    </ul>
     
+   
   </body>
+  
 </html>
